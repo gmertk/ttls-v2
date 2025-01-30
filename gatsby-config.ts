@@ -26,6 +26,7 @@ const config: GatsbyConfig = {
           { name: `Art`, slug: `/art` },
           { name: `About`, slug: `/about` },
         ],
+        sharp: false,
       },
     },
     {
@@ -64,7 +65,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`auto`, `webp`],
+          formats: [`png`],
           placeholder: `dominantColor`,
         },
       },
