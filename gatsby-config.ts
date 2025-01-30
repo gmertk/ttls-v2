@@ -1,7 +1,5 @@
-import type { GatsbyConfig, PluginRef } from "gatsby"
-import "dotenv/config"
-
-const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
+import type { GatsbyConfig, PluginRef } from "gatsby";
+import "dotenv/config";
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -62,16 +60,16 @@ const config: GatsbyConfig = {
         ],
       },
     },
-    // You can remove this plugin if you don't need it
-    shouldAnalyseBundle && {
-      resolve: `gatsby-plugin-webpack-statoscope`,
+    {
+      resolve: `gatsby-plugin-sharp`,
       options: {
-        saveReportTo: `${__dirname}/public/.statoscope/_bundle.html`,
-        saveStatsTo: `${__dirname}/public/.statoscope/_stats.json`,
-        open: false,
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: `dominantColor`,
+        },
       },
     },
   ].filter(Boolean) as Array<PluginRef>,
-}
+};
 
-export default config
+export default config;
