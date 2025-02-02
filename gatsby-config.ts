@@ -1,19 +1,23 @@
 import type { GatsbyConfig, PluginRef } from "gatsby";
 import "dotenv/config";
 
+const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE;
+
 const config: GatsbyConfig = {
   siteMetadata: {
     // You can overwrite values here that are used for the SEO component
     // You can also add new values here to query them like usual
     // See all options: https://github.com/LekoArts/gatsby-themes/blob/main/themes/gatsby-theme-jodie/gatsby-config.mjs
-    siteTitle: `Jodie`,
-    siteTitleAlt: `Jodie - Gatsby Starter Portfolio`,
-    siteHeadline: `Jodie - Gatsby Theme from @lekoarts`,
-    siteUrl: `https://jodie.lekoarts.de`,
-    siteDescription: `Image-heavy photography portfolio with colorful accents & customizable pages. Includes adaptive image grids powered by CSS grid and automatic image integration into projects.`,
+    siteTitle: "This Town's Last Stop - Çayyolu Ankara",
+    siteTitleAlt:
+      "This Town's Last Stop Restoran - Park Caddesi Çayyolu Ankara",
+    siteHeadline: `Lezzetli Yemekler ve Gülen Yüzler`,
+    siteUrl: `https://www.thistownslaststop.com`,
+    siteDescription:
+      "Last Stop - Restoran, Gastropub - Park Caddesi, Çayyolu, Ankara",
     siteImage: `/banner.jpg`,
-    siteLanguage: `en`,
-    author: `@lekoarts_de`,
+    siteLanguage: `tr`,
+    author: `@TTLastStop`,
   },
   trailingSlash: `always`,
   plugins: [
@@ -22,11 +26,19 @@ const config: GatsbyConfig = {
       // See the theme's README for all available options
       options: {
         navigation: [
-          { name: `Projects`, slug: `/projects` },
-          { name: `Art`, slug: `/art` },
-          { name: `About`, slug: `/about` },
+          { name: `Menü`, slug: `/menu` },
+          { name: `Hakkımızda`, slug: `/hakkimizda` },
         ],
         sharp: false,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`png`],
+          placeholder: `dominantColor`,
+        },
       },
     },
     {
@@ -38,11 +50,11 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `jodie - @lekoarts/gatsby-theme-jodie`,
-        short_name: `jodie`,
-        description: `Image-heavy photography portfolio with colorful accents & customizable pages. Includes adaptive image grids powered by CSS grid and automatic image integration into projects.`,
+        name: "Last Stop",
+        short_name: `Last Stop`,
+        description: `Last Stop - Restoran - Park Caddesi Çayyolu Ankara`,
         start_url: `/`,
-        background_color: `#ffffff`,
+        background_color: `#3b3c4f`,
         // This will impact how browsers show your PWA/website
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#b75e09`,
@@ -59,15 +71,6 @@ const config: GatsbyConfig = {
             type: `image/png`,
           },
         ],
-      },
-    },
-    {
-      resolve: `gatsby-plugin-sharp`,
-      options: {
-        defaults: {
-          formats: [`png`],
-          placeholder: `dominantColor`,
-        },
       },
     },
   ].filter(Boolean) as Array<PluginRef>,
